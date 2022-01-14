@@ -1,0 +1,14 @@
+{
+  "name": "graphql-movie-server",
+  "version": "0.1.0",
+  "description": "Movie database API using GraphQL",
+  "main": "index.js",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/svensktutby/graphql-movie-server.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
