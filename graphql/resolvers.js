@@ -1,4 +1,4 @@
-import { addMovie, getMovie, getMovies } from './db';
+import { addMovie, getMovie, getMovies, removeMovie } from './db';
 
 const resolvers = {
   Query: {
@@ -6,7 +6,8 @@ const resolvers = {
     movie: (_, { id }) => getMovie(id),
   },
   Mutation: {
-    addMovie: (_, { title, score }) => addMovie(title, score)
+    addMovie: (_, { title, score }) => addMovie(title, score),
+    removeMovie: (_, { id }) => removeMovie(id),
   }
 };
 

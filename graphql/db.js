@@ -1,4 +1,4 @@
-export let movies = [
+let movies = [
   {
     id: 1,
     title: 'Fantastic Mr. Fox',
@@ -37,4 +37,16 @@ export const addMovie = (title, score) => {
   movies.push(newMovie);
 
   return newMovie;
+}
+
+export const removeMovie = (movieId) => {
+  const filteredMovies = movies.filter(({ id }) => id !== movieId);
+
+  if (movies.length > filteredMovies.length) {
+    movies = filteredMovies;
+
+    return true;
+  } else {
+    return false;
+  }
 }
