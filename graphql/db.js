@@ -1,52 +1,14 @@
-let movies = [
-  {
-    id: 1,
-    title: 'Fantastic Mr. Fox',
-    score: 8,
-  },
-  {
-    id: 2,
-    title: 'With Fire and Sword',
-    score: 7,
-  },
-  {
-    id: 3,
-    title: 'Interstellar',
-    score: 9,
-  },
-  {
-    id: 4,
-    title: 'Austin Powers',
-    score: 7,
-  },
-];
+import fetch from 'node-fetch';
 
-export const getMovies = () => movies;
+const API_URL = 'https://yts.mx/api/v2/list_movies.json';
 
-export const getMovie = (movieId) => {
-  return movies.find(({ id }) => id === movieId);
-}
+export const getMovies = (limit, rating) => {
+    let REQUEST_URL = `${ API_URL }?`;
 
-export const addMovie = (title, score) => {
-  const newMovie = {
-    id: movies.length + 1,
-    title,
-    score,
-  }
+    if (limit > 0) REQUEST_URL += `limit=${ limit }`;
+    if (rating > 0) REQUEST_URL += `&minimum_rating=${ rating }`;
 
-  movies.push(newMovie);
-
-  return newMovie;
-}
-
-export const removeMovie = (movieId) => {
-  const filteredMovies = movies.filter(({ id }) => id !== movieId);
-
-  if (movies.length > filteredMovies.length) {
-    movies = filteredMovies;
-
-    return true;
-  } else {
-    return false;
-  }
-}
+    return fetch(`${ REQUEST_URL }`)
+        .then((res) => res.json())
+        .then((json) => json.data.movies);
+};
